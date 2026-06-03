@@ -40,7 +40,21 @@ Review:
 
 - Chinese runs without `w:eastAsia`.
 - Unexpectedly mixed East Asian fonts.
+- Generated titles/headings using non-black colors or non-`宋体` East Asian fonts.
+- Generated body text not using black `宋体`, 小四 12 pt, or 1.5 line spacing.
 - Whether revision is recommended.
+
+For reports with formulas, also run:
+
+```powershell
+python scripts/check_docx_latex_literals.py path\to\report.docx
+```
+
+Review:
+
+- Raw `$$...$$`, `\[...\]`, or `\(...\)` blocks.
+- LaTeX commands such as `\frac`, `\theta`, `\lambda`, or `\left`.
+- Whether formula conversion is still needed.
 
 If a DOCX sample report exists, also run:
 

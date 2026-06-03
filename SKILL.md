@@ -76,14 +76,17 @@ Standard input folder names:
 6. Generate the report.
    - Create DOCX unless the user requests another format.
    - Before generating Chinese DOCX content, read `references/docx-generation.md` and use explicit East Asian font settings for every run.
+   - Default generated titles/headings to black `宋体` unless the template or user explicitly requires another style.
+   - Default generated body text to black `宋体`, 小四 12 pt, 1.5 line spacing unless the template or user explicitly requires another style.
    - Preserve template structure and formatting as much as practical.
-   - Insert tables, formulas, code snippets, figures, and placeholders where required.
+   - Insert tables, converted formulas, code snippets, figures, and placeholders where required. Do not leave raw LaTeX formula syntax such as `$$...$$` in the final DOCX.
    - If a finished sample is provided, generate from the task requirements and difference plan, not by rewriting the sample section by section.
    - If generating multiple versions, vary data, examples, wording, section emphasis, chart/table ordering, and conclusions.
 
 7. Validate.
    - Run `scripts/verify_report_docx.py <report.docx>` after DOCX generation.
    - For Chinese DOCX reports, run `scripts/check_docx_fonts.py <report.docx>` and fix mixed or missing East Asian font settings.
+   - If the report contains formulas, run `scripts/check_docx_latex_literals.py <report.docx>` and convert any remaining raw LaTeX before delivery.
    - If a DOCX sample report was used, run `scripts/compare_docx_similarity.py <sample.docx> <report.docx>` and revise if the output is too similar.
    - Check required sections, placeholder count, table count, image count, and consistency of results and conclusions.
    - Report any missing evidence or assumptions to the user.
